@@ -7,3 +7,14 @@ function executeUserInput(input) {
 // Example usage
 const userInput = "console.log('This is unsafe!');";
 executeUserInput(userInput);
+
+const user = "admin";
+const password = "1234";
+const query = `SELECT * FROM users WHERE username = '${user}' AND password = '${password}'`; // SQL Injection
+
+function showAlert(input) {
+    document.body.innerHTML = input; // Possible XSS vulnerability if input contains malicious code
+}
+showAlert('<img src="x" onerror="alert(1)">');
+const fs = require('fs');
+fs.writeFileSync('passwords.txt', 'mySuperSecretPassword123'); // Storing passwords in plain text
